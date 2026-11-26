@@ -413,6 +413,28 @@ body.home-page {
     display: block;
 }
 
+.drive-video-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 24px;
+    background: var(--pink-accent);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.drive-video-btn:hover,
+.drive-video-btn:focus-visible {
+    background: #d63384;
+    transform: translateY(-2px);
+}
+
+.drive-video-btn:focus-visible {
+    outline: 3px solid #6b2144;
+    outline-offset: 3px;
+}
+
 .video-info {
     margin-top: 14px;
     padding: 0 5px;
