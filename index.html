@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 20th Birthday, Kylie! 🎀</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="home-page">
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- ========================================================= -->
+    <!-- === TOP LAYERED PINK PARTY BUNTING (SCREENSHOT STYLE)   === -->
+    <!-- ========================================================= -->
+    <div class="top-bunting" aria-hidden="true">
+        <svg viewBox="0 0 1440 230" preserveAspectRatio="none" class="bunting-svg">
+            <!-- Back string & deeper rose pennants -->
+            <line x1="0" y1="22" x2="1440" y2="76" stroke="#c4005c" stroke-width="3" />
+            <g class="bunting-back">
+                <polygon points="90,26 195,30 142,152" fill="#d90066" />
+                <polygon points="104,35 181,38 142,130" fill="none" stroke="#ff99c8" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="340,36 445,40 392,162" fill="#f78bc0" />
+                <polygon points="354,45 431,48 392,140" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="590,45 695,49 642,171" fill="#d90066" />
+                <polygon points="604,54 681,57 642,149" fill="none" stroke="#ff99c8" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="840,55 945,59 892,181" fill="#f78bc0" />
+                <polygon points="854,64 931,67 892,159" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="1090,64 1195,68 1142,190" fill="#d90066" />
+                <polygon points="1104,73 1181,76 1142,168" fill="none" stroke="#ff99c8" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="1330,72 1435,76 1382,198" fill="#f78bc0" />
+                <polygon points="1344,81 1421,84 1382,176" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="5 4" />
+            </g>
+
+            <!-- Front string & pastel/hot-pink pennants -->
+            <line x1="0" y1="68" x2="1440" y2="12" stroke="#e6006b" stroke-width="3" />
+            <g class="bunting-front">
+                <polygon points="15,66 125,61 70,185" fill="#ffc4df" />
+                <polygon points="29,74 111,70 70,162" fill="none" stroke="#ff4d9d" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="220,57 330,52 275,176" fill="#e6006b" />
+                <polygon points="234,65 316,61 275,153" fill="none" stroke="#ffd1e6" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="465,46 575,41 520,165" fill="#ffd6e8" />
+                <polygon points="479,54 561,50 520,142" fill="none" stroke="#ff338e" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="715,35 825,30 770,154" fill="#e6006b" />
+                <polygon points="729,43 811,39 770,131" fill="none" stroke="#ffd1e6" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="965,24 1075,19 1020,143" fill="#ffd6e8" />
+                <polygon points="979,32 1061,28 1020,120" fill="none" stroke="#ff338e" stroke-width="2" stroke-dasharray="5 4" />
+
+                <polygon points="1215,13 1325,8 1270,132" fill="#e6006b" />
+                <polygon points="1229,21 1311,17 1270,109" fill="none" stroke="#ffd1e6" stroke-width="2" stroke-dasharray="5 4" />
+            </g>
+
+            <!-- Cute little stars around the flags -->
+            <polygon points="165,12 169,21 179,22 171,29 174,39 165,33 156,39 159,29 151,22 161,21" fill="#ffe600" />
+            <polygon points="420,18 423,24 430,25 425,30 426,37 420,33 414,37 415,30 410,25 417,24" fill="#ffffff" />
+            <polygon points="865,14 869,23 879,24 871,31 874,41 865,35 856,41 859,31 851,24 861,23" fill="#ffe600" />
+            <polygon points="1150,24 1153,30 1160,31 1155,36 1156,43 1150,39 1144,43 1145,36 1140,31 1147,30" fill="#ffffff" />
+        </svg>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- === SLIDING-LEFT BACKGROUND PHOTO COLLAGE (RETAINED)     === -->
+    <!-- ========================================================= -->
+    <div class="bg-collage" aria-hidden="true">
+        <div class="slide-row row-top">
+            <div class="slide-track">
+                <img src="images/5ccc9c69-5247-4871-a7d4-50088caa65c0.jpeg" alt="" class="slide-photo tilt-a">
+                <img src="images/8c0cf9a3-87e3-420f-99e4-108112bfc2d7.jpeg" alt="" class="slide-photo tilt-b">
+                <img src="images/0730f8f9-bec9-49ec-9526-524c1e9e9f83.jpeg" alt="" class="slide-photo tilt-c">
+                <img src="images/780b22f5-93f1-482d-9629-f05f22ebc35d.jpeg" alt="" class="slide-photo tilt-a">
+                <img src="images/818c3047-59bc-425b-9cdd-dc0cce35656d.jpeg" alt="" class="slide-photo tilt-b">
+
+                <img src="images/5ccc9c69-5247-4871-a7d4-50088caa65c0.jpeg" alt="" class="slide-photo tilt-a">
+                <img src="images/8c0cf9a3-87e3-420f-99e4-108112bfc2d7.jpeg" alt="" class="slide-photo tilt-b">
+                <img src="images/0730f8f9-bec9-49ec-9526-524c1e9e9f83.jpeg" alt="" class="slide-photo tilt-c">
+                <img src="images/780b22f5-93f1-482d-9629-f05f22ebc35d.jpeg" alt="" class="slide-photo tilt-a">
+                <img src="images/818c3047-59bc-425b-9cdd-dc0cce35656d.jpeg" alt="" class="slide-photo tilt-b">
+            </div>
+        </div>
+
+        <div class="slide-row row-bottom">
+            <div class="slide-track track-slow">
+                <img src="images/892b176b-a792-466d-929c-4216407359cf.jpeg" alt="" class="slide-photo tilt-b">
+                <img src="images/934df15f-abee-41d6-9c91-6159dc6b3d5c.jpeg" alt="" class="slide-photo tilt-a">
+                <img src="images/a4e4d22c-d088-44b4-b3c6-3cf5f401896b.jpeg" alt="" class="slide-photo tilt-c">
+                <img src="images/b1add10d-8402-4726-89f9-0e30bed854be.jpeg" alt="" class="slide-photo tilt-b">
+                <img src="images/b7f01b25-ed75-4cf1-8d71-495d6ee49782.jpeg" alt="" class="slide-photo tilt-a">
+
+                <img src="images/892b176b-a792-466d-929c-4216407359cf.jpeg" alt="" class="slide-photo tilt-b">
+                <img src="images/934df15f-abee-41d6-9c91-6159dc6b3d5c.jpeg" alt="" class="slide-photo tilt-a">
+                <img src="images/a4e4d22c-d088-44b4-b3c6-3cf5f401896b.jpeg" alt="" class="slide-photo tilt-c">
+                <img src="images/b1add10d-8402-4726-89f9-0e30bed854be.jpeg" alt="" class="slide-photo tilt-b">
+                <img src="images/b7f01b25-ed75-4cf1-8d71-495d6ee49782.jpeg" alt="" class="slide-photo tilt-a">
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- === TOP BAR (SCREENSHOT STYLE)                          === -->
+    <!-- ========================================================= -->
+    <header class="poster-topbar">
+        <div class="brand-tag">• KYLIE • 20TH</div>
+        <nav class="poster-nav">
+            <a href="index.html" class="active">HOME</a>
+            <a href="greetings.html">VIDEOS</a>
+            <button id="celebrate-btn" type="button" class="nav-confetti-link">CONFETTI</button>
+        </nav>
+    </header>
+
+    <!-- ========================================================= -->
+    <!-- === CENTER BIRTHDAY POSTER HERO                         === -->
+    <!-- ========================================================= -->
+    <main class="poster-hero">
+        <p class="poster-kicker">HAPPY 20TH</p>
+        <h1 class="poster-display">BIRTHDAY</h1>
+        <p class="poster-name">KYLIE 🎀</p>
+
+        <p class="poster-copy">
+            Twenty years of brightening up the world, and I’m so lucky to be part of your story.
+            Tap below to watch everyone’s birthday video greetings for you!
+        </p>
+
+        <div class="poster-actions">
+            <a href="greetings.html" class="poster-go-btn">GO NOW</a>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
