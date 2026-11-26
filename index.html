@@ -5,17 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 20th Birthday, Kylie! 🎀</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Indie+Flower&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="home-page">
     <canvas id="confetti-canvas"></canvas>
 
     <!-- ========================================================= -->
-    <!-- === TOP LAYERED PINK PARTY BUNTING (SCREENSHOT STYLE)   === -->
+    <!-- === TOP LAYERED PINK PARTY BUNTING                      === -->
     <!-- ========================================================= -->
     <div class="top-bunting" aria-hidden="true">
         <svg viewBox="0 0 1440 230" preserveAspectRatio="none" class="bunting-svg">
-            <!-- Back string & deeper rose pennants -->
             <line x1="0" y1="22" x2="1440" y2="76" stroke="#c4005c" stroke-width="3" />
             <g class="bunting-back">
                 <polygon points="90,26 195,30 142,152" fill="#d90066" />
@@ -37,7 +36,6 @@
                 <polygon points="1344,81 1421,84 1382,176" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="5 4" />
             </g>
 
-            <!-- Front string & pastel/hot-pink pennants -->
             <line x1="0" y1="68" x2="1440" y2="12" stroke="#e6006b" stroke-width="3" />
             <g class="bunting-front">
                 <polygon points="15,66 125,61 70,185" fill="#ffc4df" />
@@ -59,7 +57,6 @@
                 <polygon points="1229,21 1311,17 1270,109" fill="none" stroke="#ffd1e6" stroke-width="2" stroke-dasharray="5 4" />
             </g>
 
-            <!-- Cute little stars around the flags -->
             <polygon points="165,12 169,21 179,22 171,29 174,39 165,33 156,39 159,29 151,22 161,21" fill="#ffe600" />
             <polygon points="420,18 423,24 430,25 425,30 426,37 420,33 414,37 415,30 410,25 417,24" fill="#ffffff" />
             <polygon points="865,14 869,23 879,24 871,31 874,41 865,35 856,41 859,31 851,24 861,23" fill="#ffe600" />
@@ -68,7 +65,7 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- === SLIDING-LEFT BACKGROUND PHOTO COLLAGE (RETAINED)     === -->
+    <!-- === SLIDING BACKGROUND PHOTO COLLAGE (RETAINED)          === -->
     <!-- ========================================================= -->
     <div class="bg-collage" aria-hidden="true">
         <div class="slide-row row-top">
@@ -105,7 +102,7 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- === TOP BAR (SCREENSHOT STYLE)                          === -->
+    <!-- === TOP BAR                                             === -->
     <!-- ========================================================= -->
     <header class="poster-topbar">
         <div class="brand-tag">• KYLIE • 20TH</div>
@@ -117,22 +114,64 @@
     </header>
 
     <!-- ========================================================= -->
-    <!-- === CENTER BIRTHDAY POSTER HERO                         === -->
+    <!-- === SCRAPBOOK CUTOUT POSTER HERO                        === -->
     <!-- ========================================================= -->
     <main class="poster-hero">
-        <p class="poster-kicker">HAPPY 20TH</p>
-        <h1 class="poster-display">BIRTHDAY</h1>
+        <!-- Top lined-paper note cutout -->
+        <div class="scrap-note scrap-note-top" aria-hidden="true">
+            <span>Twenty years of</span>
+            <span>brightening our</span>
+            <span>everyday world ♡</span>
+        </div>
+
+        <!-- Ransom-style cutout headline -->
+        <div class="ransom-headline" aria-label="Happy 20th Birthday">
+            <div class="ransom-row">
+                <span class="cutout-char c-pink r-neg4">H</span>
+                <span class="cutout-char c-cream r-pos3">A</span>
+                <span class="cutout-char c-rose r-neg2">P</span>
+                <span class="cutout-char c-white r-pos5">P</span>
+                <span class="cutout-char c-berry r-neg3">Y</span>
+                <span class="cutout-badge r-pos4">20TH</span>
+            </div>
+            <h1 class="ransom-row ransom-main">
+                <span class="cutout-char c-white r-neg3">B</span>
+                <span class="cutout-char c-pink r-pos2">I</span>
+                <span class="cutout-char c-berry r-neg5">R</span>
+                <span class="cutout-char c-cream r-pos4">T</span>
+                <span class="cutout-char c-rose r-neg2">H</span>
+                <span class="cutout-char c-white r-pos3">D</span>
+                <span class="cutout-char c-pink r-neg4">A</span>
+                <span class="cutout-char c-berry r-pos2">Y</span>
+            </h1>
+        </div>
+
+        <!-- Scrapbook name tag -->
         <p class="poster-name">KYLIE 🎀</p>
 
-        <p class="poster-copy">
-            Twenty years of brightening up the world, and I’m so lucky to be part of your story.
-            Tap below to watch everyone’s birthday video greetings for you!
-        </p>
+        <!-- Center scrapbook frame with message & greetings button -->
+        <section class="scrap-center-card">
+            <span class="washi-tape tape-left" aria-hidden="true"></span>
+            <span class="washi-tape tape-right" aria-hidden="true"></span>
 
-        <div class="poster-actions">
-            <a href="greetings.html" class="poster-go-btn">GO NOW</a>
-        </div>
+            <p class="poster-copy">
+                Twenty years of brightening up the world, and I’m so lucky to be part of your story.
+                Tap below to watch everyone’s birthday video greetings for you!
+            </p>
+
+            <div class="poster-actions">
+                <a href="greetings.html" class="poster-go-btn">GO TO GREETINGS</a>
+            </div>
+        </section>
+
+        <!-- Bottom lined-paper note cutout -->
+        <aside class="scrap-note scrap-note-bottom" aria-label="Birthday note">
+            <p>A special day to celebrate</p>
+            <p>all your laughs, wins,</p>
+            <p>&amp; memories this year!</p>
+        </aside>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>

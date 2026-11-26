@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const colors = ["#ff4d94", "#ff80b3", "#e60073", "#ffb3d1", "#ffffff", "#ffccd5"];
+        const colors = ["#ff4d94", "#ff80b3", "#e60073", "#ffb3d1", "#ffffff", "#ffccd5", "#ffe66d"];
         let particles = [];
 
         function createConfetti(count = 100) {
@@ -139,121 +139,140 @@ document.addEventListener("DOMContentLoaded", () => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.15 });
 
         videoCards.forEach((card) => revealObserver.observe(card));
     }
 
     if (allVideos.length > 0) {
-        const autoplayObserver = new IntersectionObserver((entries) => {
+        const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                const video = entry.target;
-                const hasSource = Boolean(video.getAttribute("src") || video.currentSrc);
-                if (!hasSource) return;
-
-                if (entry.isIntersecting && entry.intersectionRatio >= 0.65) {
-                    allVideos.forEach((otherVideo) => {
-                        if (otherVideo !== video && !otherVideo.paused) {
-                            otherVideo.pause();
+                const vid = entry.target;
+                if (entry.isIntersecting) {
+                    allVideos.forEach((other) => {
+                        if (other !== vid && !other.paused) {
+                            other.pause();
                         }
                     });
-
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            keepBackgroundMusicPlaying();
-                        }).catch(() => {});
-                    }
-                } else if (!entry.isIntersecting || entry.intersectionRatio < 0.35) {
-                    if (!video.paused) {
-                        video.pause();
-                        keepBackgroundMusicPlaying();
-                    }
+                    vid.play().catch(() => {});
+                } else if (!vid.paused) {
+                    vid.pause();
                 }
             });
-        }, {
-            threshold: [0, 0.35, 0.65, 1]
-        });
+        }, { threshold: 0.6 });
 
-        allVideos.forEach((video) => {
-            autoplayObserver.observe(video);
-
-            video.addEventListener("play", () => {
-                allVideos.forEach((otherVideo) => {
-                    if (otherVideo !== video && !otherVideo.paused) {
-                        otherVideo.pause();
-                    }
-                });
-                keepBackgroundMusicPlaying();
-            });
-
-            video.addEventListener("pause", keepBackgroundMusicPlaying);
-            video.addEventListener("ended", keepBackgroundMusicPlaying);
+        allVideos.forEach((vid) => {
+            vid.addEventListener("ended", keepBackgroundMusicPlaying);
+            vid.addEventListener("pause", keepBackgroundMusicPlaying);
+            videoObserver.observe(vid);
         });
     }
 
     // =========================================================================
-    // 4. Envelope Popup (After Reaching Bottom or Last Video Ended + 3s Delay)
+    // 4. Interactive Envelope Letter Modal (Activates ONLY at Bottom -> 4s Timer)
     // =========================================================================
-    const bottomTrigger = document.getElementById("bottom-trigger");
     const envelopeModal = document.getElementById("envelope-modal");
     const envelopeBox = document.getElementById("envelope-box");
     const closeLetterBtn = document.getElementById("close-letter-btn");
-    const feedVideos = document.querySelectorAll(".video-feed video");
+    const openEnvelopeBtn = document.getElementById("open-envelope-btn");
+    const bottomTrigger = document.getElementById("bottom-trigger");
 
-    let popupShown = false;
-    let delayTimer = null;
+    const BOTTOM_POPUP_DELAY_MS = 4000; // 4 seconds countdown pagkarating sa pinakababa
+    let bottomCountdownId = null;
+    let popupAlreadyShown = false;
 
-    function triggerEnvelopeAfterDelay() {
-        if (popupShown || delayTimer || !envelopeModal) return;
-
-        delayTimer = setTimeout(() => {
-            envelopeModal.classList.add("active");
-            envelopeModal.setAttribute("aria-hidden", "false");
-            popupShown = true;
-            delayTimer = null;
-        }, 8000); // 8 seconds delay
+    function openModal() {
+        if (!envelopeModal) return;
+        clearBottomCountdown();
+        envelopeModal.classList.add("active");
+        envelopeModal.setAttribute("aria-hidden", "false");
     }
 
-    if (bottomTrigger) {
-        const bottomObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    triggerEnvelopeAfterDelay();
-                } else if (!popupShown && delayTimer) {
-                    clearTimeout(delayTimer);
-                    delayTimer = null;
-                }
-            });
-        }, { threshold: 0.5 });
-
-        bottomObserver.observe(bottomTrigger);
+    function closeModal() {
+        if (!envelopeModal) return;
+        envelopeModal.classList.remove("active");
+        envelopeModal.setAttribute("aria-hidden", "true");
+        if (envelopeBox) envelopeBox.classList.remove("opened");
     }
 
-    const populatedVideos = Array.from(feedVideos).filter((v) => v.getAttribute("src"));
-    if (populatedVideos.length > 0) {
-        const lastVideo = populatedVideos[populatedVideos.length - 1];
-        lastVideo.addEventListener("ended", () => {
-            triggerEnvelopeAfterDelay();
+    function clearBottomCountdown() {
+        if (bottomCountdownId) {
+            clearTimeout(bottomCountdownId);
+            bottomCountdownId = null;
+        }
+    }
+
+    function isScrolledToVeryBottom() {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const docHeight = Math.max(
+            document.documentElement.scrollHeight,
+            document.body.scrollHeight
+        );
+        return scrollPosition >= docHeight - 24;
+    }
+
+    function startFourSecondBottomTimer() {
+        if (!envelopeModal || popupAlreadyShown || bottomCountdownId) return;
+        bottomCountdownId = setTimeout(() => {
+            bottomCountdownId = null;
+            if (!popupAlreadyShown && isScrolledToVeryBottom()) {
+                popupAlreadyShown = true;
+                openModal();
+            }
+        }, BOTTOM_POPUP_DELAY_MS);
+    }
+
+    function handleBottomReached() {
+        if (!envelopeModal || popupAlreadyShown) return;
+        if (isScrolledToVeryBottom()) {
+            startFourSecondBottomTimer();
+        }
+    }
+
+    if (openEnvelopeBtn) {
+        openEnvelopeBtn.addEventListener("click", () => {
+            popupAlreadyShown = true;
+            openModal();
         });
     }
 
     if (envelopeBox) {
-        envelopeBox.addEventListener("click", (e) => {
-            if (closeLetterBtn && (e.target === closeLetterBtn || closeLetterBtn.contains(e.target))) {
-                return;
-            }
+        envelopeBox.addEventListener("click", () => {
             envelopeBox.classList.add("opened");
         });
     }
 
-    if (closeLetterBtn && envelopeModal) {
+    if (closeLetterBtn) {
         closeLetterBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            envelopeModal.classList.remove("active");
-            envelopeModal.setAttribute("aria-hidden", "true");
+            closeModal();
         });
+    }
+
+    if (envelopeModal) {
+        envelopeModal.addEventListener("click", (e) => {
+            if (e.target === envelopeModal) {
+                closeModal();
+            }
+        });
+
+        // 1) Scroll check: kapag naabot ang pinakababa, saka magsisimula ang 4s timer
+        window.addEventListener("scroll", handleBottomReached, { passive: true });
+        window.addEventListener("resize", handleBottomReached, { passive: true });
+
+        // 2) Bottom trigger observer para sa mas siguradong detection sa pinakababa ng page
+        if (bottomTrigger && "IntersectionObserver" in window) {
+            const bottomObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && isScrolledToVeryBottom()) {
+                        startFourSecondBottomTimer();
+                    }
+                });
+            }, { threshold: 0.1 });
+            bottomObserver.observe(bottomTrigger);
+        }
     }
 });
